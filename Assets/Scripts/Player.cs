@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class Player : NetworkBehaviour {
 
@@ -13,13 +14,17 @@ public class Player : NetworkBehaviour {
 	public float moveSpeed = 1.87f;
 	public GameObject bulletPrefab;
 
+	private Text scoreText;
+
 	public override void OnStartClient(){
 		gameObject.GetComponent<Renderer> ().material.color = color;
+		scoreText = GameObject.Find ("ScoreText").GetComponent<Text> ();
 	}
 
 	void Update(){
 		if (isLocalPlayer && hasAuthority) {
 			GetInput ();
+			scoreText.text = "Score: " + score;
 		}
 	}
 
