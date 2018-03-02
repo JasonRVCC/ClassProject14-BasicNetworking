@@ -11,4 +11,8 @@ public class Bullet : NetworkBehaviour {
 	public override void OnStartClient(){
 		gameObject.GetComponent<Renderer> ().material.color = color;
 	}
+
+	void OnTriggerEnter(Collider other){
+		Destroy (other.gameObject);
+	}
 }
